@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-// import 'antd/dist/antd.min.css';
 import {
   AutoComplete,
   Button,
@@ -10,6 +9,7 @@ import {
   Input,
   InputNumber,
   Row,
+  Radio,
   Select,
 } from 'antd';
 
@@ -54,7 +54,7 @@ const formItemLayout = {
       span: 24,
     },
     sm: {
-      span: 8,
+      span: 5,
     },
   },
   wrapperCol: {
@@ -62,7 +62,7 @@ const formItemLayout = {
       span: 24,
     },
     sm: {
-      span: 16,
+      span: 19,
     },
   },
 };
@@ -73,14 +73,18 @@ const tailFormItemLayout = {
       offset: 0,
     },
     sm: {
-      span: 16,
-      offset: 8,
+      span: 10,
+      offset: 5,
     },
   },
 };
+const genderOptions = ['Apple', 'Pear', 'Orange'];
 
 const Signup = () => {
   const [form] = Form.useForm();
+
+  const [gender, setGender] = useState('male');
+
 
   const onFinish = (values) => {
     console.log('Received values of form: ', values);
@@ -120,6 +124,10 @@ const Signup = () => {
     }
   };
 
+  const onGenderChange = ({ target: { value } }) => {
+    setGender(value);
+  };
+
   const websiteOptions = autoCompleteResult.map((website) => ({
     label: website,
     value: website,
@@ -133,13 +141,13 @@ const Signup = () => {
       initialValues={{
         residence: ['zhejiang', 'hangzhou', 'xihu'],
         prefix: '86',
+        suffix: 'USD',
       }}
       scrollToFirstError
     >
       <Form.Item
         name="email"
         label="E-mail"
-        size="large"
         rules={[
           {
             type: 'email',
@@ -151,7 +159,7 @@ const Signup = () => {
           },
         ]}
       >
-        <Input />
+        <Input  placeholder="Basic usage" />
       </Form.Item>
 
       <Form.Item
@@ -295,11 +303,7 @@ const Signup = () => {
           },
         ]}
       >
-        <Select placeholder="select your gender">
-          <Option value="male">Male</Option>
-          <Option value="female">Female</Option>
-          <Option value="other">Other</Option>
-        </Select>
+      <Radio.Group options={genderOptions} onChange={onGenderChange} value={gender} />
       </Form.Item>
 
       <Form.Item label="Captcha" extra="We must make sure that your are a human.">
