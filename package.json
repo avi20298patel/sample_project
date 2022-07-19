@@ -12,6 +12,7 @@
     "bootstrap-icons": "^1.8.3",
     "font-awesome": "^4.7.0",
     "month-year-picker": "^0.2.5-alpha-1",
+    "prop-types": "^15.8.1",
     "react": "^18.1.0",
     "react-datepicker": "^4.8.0",
     "react-dom": "^18.1.0",

@@ -1,6 +1,6 @@
-import { Avatar, Button, List, Skeleton } from "antd";
 import React, { useEffect, useState } from "react";
-import {Link} from 'react-router-dom'
+
+import LoadingList from "../Global/List/LoadingList";
 
 const count = 3;
 const fakeDataUrl = `https://randomuser.me/api/?results=${count}&inc=name,gender,email,nat,picture&noinfo`;
@@ -44,44 +44,13 @@ const Users = () => {
         window.dispatchEvent(new Event("resize"));
       });
   };
-
-  const loadMore =
-    !initLoading && !loading ? (
-      <div
-        style={{
-          textAlign: "center",
-          marginTop: 12,
-          height: 32,
-          lineHeight: "32px",
-        }}
-      >
-        <Button onClick={onLoadMore}>loading more</Button>
-      </div>
-    ) : null;
   return (
-    <List
-      className="demo-loadmore-list"
-      loading={initLoading}
-      itemLayout="horizontal"
-      loadMore={loadMore}
-      dataSource={list}
-      renderItem={(item) => (
-        <List.Item
-          actions={[
-            <Link to={'update'} key="list-loadmore-edit">edit</Link>,
-            <Link to={'info'} key="list-loadmore-more">more</Link>,
-          ]}
-        >
-          <Skeleton avatar title={false} loading={item.loading} active>
-            <List.Item.Meta
-              avatar={<Avatar src={item.picture.large} />}
-              title={<a href="https://ant.design">{item.name?.last}</a>}
-              description="Ant Design, a design language for background applications, is refined by Ant UED Team"
-            />
-            <div>content</div>
-          </Skeleton>
-        </List.Item>
-      )}
+    <LoadingList
+      initLoading={initLoading}
+      onLoadMore={onLoadMore}
+      list={list}
+      loading={loading}
+      listItemMetaContent={" Load More"}
     />
   );
 };

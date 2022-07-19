@@ -25,7 +25,7 @@ const items = [
   getItem('User', 'sub1', <UserOutlined />, [
     getItem(<Link to="/users">User Info</Link>, 'users'),
     getItem(<Link to="/login">Sign In</Link>, 'update'),
-    getItem(<Link to="/create">Create User</Link>, 'create'),
+    getItem(<Link to="/signup">Create User</Link>, 'Sign Up'),
   ]),
   getItem('Team', 'sub2', <TeamOutlined />, [
     getItem(<Link to="/loading">Loading List</Link>, 'loading'),
